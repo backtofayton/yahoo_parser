@@ -1,5 +1,3 @@
-Python test assignment
-
 Retrieving financial data from finance.yahoo.com for all time for a given company.
 
 Stage 1. Find the company page on the website. Through a search on the site or in any other way.

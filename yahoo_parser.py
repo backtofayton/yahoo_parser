@@ -3,6 +3,7 @@ import requests
 import re
 import json
 import time
+import os
 
 # Data format
 # Date,Open,High,Low,Close,Adj Close,Volume
@@ -29,7 +30,10 @@ def yahoo_parser(ticker):
         return False
     print(req)
 
-    with open("%s.json" % ticker, "w") as fd:
+    foldername = "./output/"
+    os.makedirs(os.path.dirname(foldername), exist_ok=True)
+    print(os.path.dirname(foldername))
+    with open("./output/%s.json" % ticker, "w") as fd:
         # Regex format for date catch in such format: 2020-07-13
         compileDate = re.compile(b"[0-9]{4}-[0-9]{2}-[0-9]{2}")
         titleParse = True
