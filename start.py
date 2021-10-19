@@ -1,3 +1,5 @@
+# Read stock tickes from yahoo_parser_target.txt and download historical data from yahoo finance
+
 from yahoo_parser import yahoo_parser
 
 targetListFileName = 'yahoo_parser_target.txt'
