@@ -13,11 +13,14 @@ import os
 
 
 def yahoo_parser(ticker):
+    start_date = '1594515200'
+    if (start_date != '347155200'):
+        print("Start date isn't set for maximum period yet!")
     # Set time to 10 minutes ago to be safe
     current_date = str(date.now().timestamp() - 600)[:-7]
     yahoo_link = (
-        "https://query1.finance.yahoo.com/v7/finance/download/%s?period1=1594515200&period2=%s&interval=1d&events=history&includeAdjustedClose=true"
-        % (ticker, current_date)
+        "https://query1.finance.yahoo.com/v7/finance/download/%s?period1=%s&period2=%s&interval=1d&events=history&includeAdjustedClose=true"
+        % (ticker, start_date, current_date)
     )
     print(yahoo_link)
 
@@ -44,7 +47,8 @@ def yahoo_parser(ticker):
         for chunk in req.iter_content(chunk_size=128):
             # Regex catches all the data before '\n' at the start of the stream to set Titles
             if titleParse:
-                parsedTitles = re.compile(b".*?(?=\n)").findall(chunk)[0].split(b",")
+                parsedTitles = re.compile(
+                    b".*?(?=\n)").findall(chunk)[0].split(b",")
                 print(parsedTitles)
                 titleParse = False
 
@@ -60,11 +64,12 @@ def yahoo_parser(ticker):
                 # chunkObject = {}
                 for index in range(len(findDates)):
                     dateString = findDates[index]
-                    compileData = re.compile(b"(?<=%b,)(.*?)(?=\n)" % dateString)
+                    compileData = re.compile(
+                        b"(?<=%b,)(.*?)(?=\n)" % dateString)
                     findData = compileData.search(chunk)
                     # If regex catches data for given date, start parsing it
                     if findData:
-                        parsedData = chunk[findData.start() : findData.end()].split(
+                        parsedData = chunk[findData.start(): findData.end()].split(
                             b","
                         )
 
@@ -73,7 +78,8 @@ def yahoo_parser(ticker):
                             if titleIndex == 0:
                                 # Set key for given Date in Dictionary
                                 print(findDates[titleIndex])
-                                chunkObject[findDates[index].decode(encoding)] = {}
+                                chunkObject[findDates[index].decode(encoding)] = {
+                                }
                             else:
                                 # parsed Data doesnt have Date field, so set it's index to -1
                                 chunkObject[findDates[index].decode(encoding)].update(
@@ -87,9 +93,11 @@ def yahoo_parser(ticker):
 
                         # If there is complete Data set it will be appended to dictionary.
                         # Save the remaining data into variable and prepend to string in the next iteration
-                        chunkRemaining = chunk[findData.end() :]
+                        chunkRemaining = chunk[findData.end():]
 
         json.dump(chunkObject, fd)
-        print(len(chunkObject.keys()))
+        print('Number of days parsed: ', len(chunkObject.keys()))
+        if (start_date != '347155200'):
+            print("Start date isn't set for maximum period yet!")
         time.sleep(3)
         return True
