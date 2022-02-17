@@ -50,10 +50,10 @@ https://query1.finance.yahoo.com/v7/finance/download/AAPL?period1=347155200&peri
 
 ## Authors
 
-👤 **Author1**
+👤 **damdafayton**
 
-- GitHub: [@damdafayton](https://github.com/damdafayton)
-- LinkedIn: [/in/damdafayton](https://linkedin.com/in/damdafayton)
+- [Github](https://github.com/damdafayton)
+- [LinkedIn](https://linkedin.com/in/damdafayton)
 
 
 ## 🤝 Contributing
