@@ -2,7 +2,7 @@
 
 Retrieving financial data from finance.yahoo.com for all time for a given company.
 
-[Video of the app](https://www.loom.com/share/c2968b75d6934041b8378231197f20c1)
+![](./animation.gif)
 
 
 ## Built With
