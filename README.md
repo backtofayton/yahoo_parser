@@ -1,6 +1,5 @@
 # Financial data parser from Yahoo
-
-Retrieving financial data from finance.yahoo.com for all time for a given company.
+Retrieve historical data of a given ticker list for a given time period from finance.yahoo.com.
 
 ![](./animation.gif)
 
